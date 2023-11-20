@@ -1,22 +1,35 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate,login,logout
+from .models import *
+from django.views import View
 
-def login_view(request):
-    return render(request, 'home.html')
 
-def bulimlar(request):
-    return render(request,'bulimlar.html')
 
-def client_update(request):
-    return render(request, 'client_update.html')
+class BolimlarView(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return render(request, 'bulimlar.html')
+        return render(request, '/')
+    # def post(self,request):
+    #     pass
+class MahsulotView(View):
 
-def clients(request):
-    return render(request, 'clients.html')
+    def post(self,request):
+        if request.method == 'POST':
+            Mahsulot.objects.create(
+                nom=request.POST.get("nom"),
+                brend=request.POST.get("brend"),
+                narx=request.POST.get("narx"),
+                miqdor=request.POST.get("miqdor")
+            ).save()
+            return redirect("/asosiy/mahsulotlar/")
+        content = {
+            "muahsulotlar": Mahsulot.objects.all(),
+        }
+        return render(request, "/asosiy/mahsulotlar/", content)
+    def get(self,request):
+        conetnt={
+            "foydalanuvchi": request.user.username.capitalize(),
+        }
+        return render(request,'products.html',conetnt)
 
-def product_update(request):
-    return render(request, 'product_update.html')
-
-def products(request):
-    return render(request,'products.html')
-
-def stats(request):
-    return render(request, 'stats.html')
