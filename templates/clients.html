@@ -81,7 +81,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/clients/" class="nav-link active">
+            <a href="/asosiy/mijozlar/" class="nav-link active">
               <i class="nav-icon far fa-circle text-danger"></i>
               <p class="text">Clients</p>
             </a>
@@ -135,18 +135,24 @@
                             <th scope="col" style="text-align: center;">Do'kon nomi</th>
                             <th scope="col" style="text-align: center;">Telefon raqami</th>
                             <th scope="col" style="text-align: center;">Manzili</th>
+                            <th scope="col" style="text-align: center;">Qarzi</th>
+                            <th scope="col" style="text-align: center;">Ombori</th>
                             <th scope="col" style="text-align: center;"></th>
                         </tr>
                     </thead>
                     <tbody>
+                    {% for mijoz in mijozlar %}
                         <tr>
-                            <th scope="row">1.</th>
-                            <td>Ali</td>
-                            <td>Baraka</td>
-                            <td>+998911115555</td>
-                            <td>Farg'ona markazi, Askiya</td>
-                            <td><a href="/client_updates/"><button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button></a></td>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{mijoz.ism}}</td>
+                            <td>{{mijoz.nom}}</td>
+                            <td>{{mijoz.tel}}</td>
+                            <td>{{mijoz.manzil}}</td>
+                            <td>{{mijoz.qarz}} so'm</td>
+                            <td>{{mijoz.ombor}}</td>
+                            <td><a href="/asosiy/client_update/{{mijoz.id}}"><button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button></a></td>
                         </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -164,19 +170,24 @@
           </div>
 
           <!-- Modal body -->
-          <form action="#" id="new-product-form" >
+          <form method="post" id="new-product-form" >{% csrf_token %}
             <div class="modal-body">
               <label for="new-product-name">FIO:</label>
               <input type="text" name="ism" placeholder="Mijoz to'liq ismi..." id="new-product-name" class="form-control" required>
                 <br>
               <label for="new-product-name">Do'kon nomi:</label>
-              <input type="text" name="dokon" placeholder="Do'kon nomi..." id="new-product-brend" class="form-control" required>
+              <input type="text" name="nom" placeholder="Do'kon nomi..." id="new-product-brend" class="form-control" required>
               <br>
               <label for="new-product-name">Telefon raqami:</label>
               <input type="text" name="tel" placeholder="Telefon raqami..." id="new-product-price" class="form-control" required>
               <br>
               <label for="new-product-name">Manzili:</label>
               <input type="text" name="manzil" placeholder="Mijoz manzili..." id="new-product-amount" class="form-control" required>
+              <br><label for="new-product-name">Qarz:</label>
+              <input type="number" name="qarz" placeholder="Mijoz qarzi(so'm)..." id="new-product-qarz" class="form-control" >
+              <br>
+              <label for="new-product-name">Ombor:</label>
+              <input type="text" name="ombor" placeholder="Ombor" id="new-product-ombor" class="form-control" value="{{nom}}" disabled>
               <br>
             </div>
 

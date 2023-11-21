@@ -4,7 +4,7 @@
     {% load static %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Clients</title>
+  <title>Mijozlar</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -38,7 +38,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Clients</h1>
+            <h1 class="m-0">Mijozlar</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -56,23 +56,27 @@
           <!-- Modal Header -->
 
           <!-- Modal body -->
-          <form action="#" id="edit-product-form" >
+          <form method="post" id="edit-product-form" >{% csrf_token %}
               <label for="edit-product-name">FIO:</label>
-              <input type="text" name="client_name" value="{{client.name}}" placeholder="Mijoz to'liq ismi..." id="edit-product-name" class="form-control" required>
+              <input type="text" name="ism" value="{{mijoz.ism}}"  id="edit-product-name" class="form-control" required>
                 <br>
               <label for="edit-product-name">Do'kon nomi:</label>
-              <input type="text" name="client_shop" value="{{client.shop_name}}" placeholder="Do'kon nomi..." id="edit-product-brend" class="form-control" required>
+              <input type="text" name="nom" value="{{mijoz.nom}}"  id="edit-product-brend" class="form-control" required>
               <br>
               <label for="edit-product-name">Telefon raqami:</label>
-              <input type="text" name="client_phone" value="{{client.phone}}" placeholder="Telefon raqami..." id="edit-product-price" class="form-control" required>
+              <input type="text" name="tel" value="{{mijoz.tel}}"  id="edit-product-price" class="form-control" required>
               <br>
               <label for="edit-product-name">Manzili:</label>
-              <input type="text" name="client_address" value="{{client.address}}" placeholder="Mijoz manzili..." id="edit-product-amount" class="form-control" required>
+              <input type="text" name="manzil" value="{{mijoz.manzil}}" id="edit-product-amount" class="form-control" required>
+              <br><label for="edit-product-name">Qarz:</label>
+              <input type="text" name="qarz" value="{{mijoz.qarz}}"  id="edit-product-qarz" class="form-control" required>
+              <br><label for="edit-product-name">Ombor:</label>
+              <input type="text" name="ombor" value="{{mijoz.ombor}}"  id="edit-product-ombor" class="form-control" disabled>
               <br>
 
           <!-- Modal footer -->
             <button type="submit" class="btn btn-success">Yangilash</button>
-              <a href="/clients/"><button type="button" class="btn btn-danger" data-dismiss="modal">Yopish</button></a>
+              <a href="/mijozlar/"><button type="button" class="btn btn-danger" data-dismiss="modal">Yopish</button></a>
 
       </form>
 

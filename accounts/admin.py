@@ -10,4 +10,6 @@ class OmborAdmin(UserAdmin):
             'fields': ('ism', 'nom', 'soha', 'tel', 'manzil')
         }),
     )
+
 admin.site.register(Ombor,OmborAdmin)
+# admin.site.register(Ombor)

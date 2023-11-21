@@ -3,7 +3,7 @@ from django.db import models
 from accounts.models import Ombor
 
 class Mahsulot(models.Model):
-    nom = models.CharField(max_length=55)
+    nom=models.CharField(max_length=55)
     brend=models.CharField(max_length=25)
     narx=models.PositiveIntegerField()
     miqdor=models.PositiveIntegerField()
